@@ -1,0 +1,40 @@
+apply plugin: 'com.android.application'
+
+project.ext{
+    supportLibraryVersion = "25.3.1"
+    archCompVersion = "1.0.0-alpha1"
+    butterKnifeVersion = "8.6.0"
+}
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
+    defaultConfig {
+        applicationId "ss.com.appstate"
+        minSdkVersion 16
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    testCompile 'junit:junit:4.12'
+    compile "android.arch.lifecycle:runtime:$project.archCompVersion"
+    compile "android.arch.lifecycle:extensions:$project.archCompVersion"
+    annotationProcessor "android.arch.lifecycle:compiler:$project.archCompVersion"
+}
